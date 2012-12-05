@@ -65,18 +65,12 @@ namespace comp4004ProjDeliverable1.Model
             this._safeNessThreshold = safetyThreshold;
         }
 
-        public bool IsStillSafe(int acvSize, Visit newVisit)
+        public bool IsStillSafe(List<Patient> patients, int acvSize, Visit newVisit)
         {
-            bool safe = true;
+            if(this._safe == true)
+                return this.IsSafe(patients, acvSize, newVisit);
 
-            if (this._safe == true)
-            {
-                return this.IsSafe(acvSize, newVisit);
-            }
-            else
-            {
-                return this.IsSafe(acvSize, null);
-            }
+            return false;
         }
 
         /*
@@ -95,45 +89,56 @@ namespace comp4004ProjDeliverable1.Model
             return false;
         }*/
 
-        public bool IsSafe(int acvSize, int safenessThreshold)
+        public bool IsSafe(List<Patient> patients, int acvSize, int safenessThreshold)
         {
             this._safeNessThreshold = safenessThreshold;
-            return this.IsSafe(acvSize, null);
+            return this.IsSafe(patients, acvSize, null);
         }
 
-        public bool IsSafe(int acvSize)
+        public bool IsSafe(List<Patient> patients, int acvSize)
         {
-            return this.IsSafe(acvSize, null);
+            return this.IsSafe(patients, acvSize, null);
         }
 
-        public bool IsSafe(int acvSize, Visit mustInclude)
+        public bool IsSafe(List<Patient> patients, int acvSize, Visit mustInclude)
         {
             bool safe = true;
-            List<Patient> patients = DbMethods.getInstance().getPatientsWVisits();
             this._safetyPatientsBuffer = new List<Patient>();
+            Stopwatch sw = new Stopwatch();
 
             this.FindACVs(acvSize,
                 (Patient sender, ACVFoundArgs args) =>
                 {
+                    sw.Start();
                     ACV acv = args.ACV;
                     int matchCount = 0;
 
-                    foreach (Patient p in patients)
-                    {
-                        if (p.MatchesACV(acv) && p.ID != this.ID)
+                    if(safe){
+                        foreach (Patient p in patients)
                         {
-                            matchCount++;
-                            this._safetyPatientsBuffer.Add(p);
+                            if (p.MatchesACV(acv) && p.ID != this.ID)
+                            {
+                                matchCount++;
+                                this._safetyPatientsBuffer.Add(p);
+
+                                if (matchCount >= this._safeNessThreshold)
+                                {
+                                    break;
+                                }
+                            }   
                         }
                     }
-
-                    if (matchCount < this._safeNessThreshold)
+                    
+                    if(matchCount < this._safeNessThreshold)
                     {
                         safe = false;
                     }
+                    
+                    sw.Stop();
                 },
                 mustInclude
             );
+
 
             if (safe)
             {

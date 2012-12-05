@@ -35,7 +35,6 @@ namespace comp4004ProjDeliverable1
 
         private void udpateDataBindings()
         {
-            this._patients = DbMethods.getInstance().getPatients();
             this.listPatientVisits.DataSource = null;
             this.listPatients.DataSource = this._patients;
         }
@@ -43,9 +42,8 @@ namespace comp4004ProjDeliverable1
         private void updatePatientVisits()
         {
        
-            this._patientVisits = DbMethods.getInstance().getPatientVisits(((Patient)this.listPatients.SelectedValue).ID);
             this.listPatientVisits.DataSource = null;
-            this.listPatientVisits.DataSource = this._patientVisits;
+            this.listPatientVisits.DataSource = this._selectedPatient.Visits;
             this.listPatientVisits.DisplayMember = "ShortString";
         }
 
@@ -81,7 +79,7 @@ namespace comp4004ProjDeliverable1
             }
                 
             
-            _controller.createIteration3Patients(1000, (int)(1000*safePatientsPercentage/100.0f), 4, new List<GenerationRule>()
+            _controller.createIteration3Patients(1000, (int)(1000*safePatientsPercentage/100.0f), 5, new List<GenerationRule>()
             {
                 new GenerationRule(100, 20),
                 new GenerationRule(100, 25),
@@ -95,7 +93,41 @@ namespace comp4004ProjDeliverable1
                 new GenerationRule(100, 65)
             });
 
+            this._patients = DbMethods.getInstance().getPatientsWVisits();
+            this.udpateDataBindings();
+        }
 
+        private void btnGenerateScenario2_Click(object sender, EventArgs e)
+        {
+            this._db.clearTables();
+
+            int safePatientsPercentage;
+
+            try
+            {
+                safePatientsPercentage = int.Parse(this.tbPatientSafetyPercentage.Text);
+            }
+            catch (Exception ex)
+            {
+                safePatientsPercentage = 10;
+            }
+
+
+            _controller.createIteration3Patients(10000, (int)(10000 * safePatientsPercentage / 100.0f), 5, new List<GenerationRule>()
+            {
+                new GenerationRule(1000, 20),
+                new GenerationRule(1000, 30),
+                new GenerationRule(1000, 40),
+                new GenerationRule(1000, 50),
+                new GenerationRule(1000, 60),
+                new GenerationRule(1000, 70),
+                new GenerationRule(1000, 80),
+                new GenerationRule(1000, 90),
+                new GenerationRule(1000, 100),
+                new GenerationRule(1000, 110)
+            });
+
+            this._patients = DbMethods.getInstance().getPatientsWVisits();
             this.udpateDataBindings();
         }
 
@@ -112,12 +144,13 @@ namespace comp4004ProjDeliverable1
                 safePatientsPercentage = 10;
             }
 
-            _controller.createIteration3Patients(50, (int)(50*safePatientsPercentage/100.0f), 4, new List<GenerationRule>()
+            _controller.createIteration3Patients(50, (int)(50*safePatientsPercentage/100.0f), 5, new List<GenerationRule>()
             {
                 new GenerationRule(25, 20),
                 new GenerationRule(25, 20)
             });
 
+            this._patients = this._db.getPatientsWVisits();
             this.udpateDataBindings();
             this.updatePatientVisits();
         }
@@ -136,12 +169,15 @@ namespace comp4004ProjDeliverable1
             int acvSize = int.Parse(this.tbACVSize.Text);
             int professionalID = r.Next(1, 10);
             Stopwatch sw = new Stopwatch();
+            //List<Patient> patients = this._db.getPatientsWVisits();
 
             this._db.InsertVisit(this._selectedPatient.ID, professionalID, rational, date);
+            int visitId = this._db.GetLastInsertedVisitID();
+            this._selectedPatient.Visits.Add(new Visit(visitId, professionalID, rational, date));
             this.updatePatientVisits();
 
             sw.Start();
-            if(this._selectedPatient.IsStillSafe(acvSize, new Visit(-1, professionalID, rational, date)))
+            if(this._selectedPatient.IsStillSafe(this._patients, acvSize, new Visit(-1, professionalID, rational, date)))
             {
                 this.lblPatientSafety.Text = "Safe";
             }
@@ -164,7 +200,7 @@ namespace comp4004ProjDeliverable1
             this._clientACVs = this._controller.retrievePatientACV_clientBased(this._selectedPatient.ID, size);
             sw.Stop();
 
-            this.lblACVTime.Text = sw.ElapsedMilliseconds + " ms";
+            this.lblACVTime.Text = this._clientACVs.Count + " ACVs in " + sw.ElapsedMilliseconds + " ms";
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -179,7 +215,7 @@ namespace comp4004ProjDeliverable1
             Stopwatch sw = new Stopwatch();
 
             sw.Start();
-            if (this._selectedPatient.IsSafe(size))
+            if (this._selectedPatient.IsSafe(this._patients, size))
             {
                 this.lblPatientSafety.Text = "Safe";
             }
@@ -321,6 +357,8 @@ namespace comp4004ProjDeliverable1
                     Dictionary<int, List<Visit>> data = DataLoader.GetVisitData(this.tbBrowse.Text);
                     DbMethods.getInstance().InsertVisits(data);
                     //this.udpateDataBindings();
+
+                    this._selectedPatient.Visits = this._db.getPatientVisits(this._selectedPatient.ID);
                     this.updatePatientVisits();
                 }
                 catch (System.Exception ex)
@@ -336,38 +374,6 @@ namespace comp4004ProjDeliverable1
 
         }
 
-        private void btnGenerateScenario2_Click(object sender, EventArgs e)
-        {
-            this._db.clearTables();
-
-            int safePatientsPercentage;
-
-            try
-            {
-                safePatientsPercentage = int.Parse(this.tbPatientSafetyPercentage.Text);
-            }
-            catch (Exception ex)
-            {
-                safePatientsPercentage = 10;
-            }
-
-
-            _controller.createIteration3Patients(10000, (int)(10000 * safePatientsPercentage / 100.0f), 4, new List<GenerationRule>()
-            {
-                new GenerationRule(1000, 20),
-                new GenerationRule(1000, 30),
-                new GenerationRule(1000, 40),
-                new GenerationRule(1000, 50),
-                new GenerationRule(1000, 60),
-                new GenerationRule(1000, 70),
-                new GenerationRule(1000, 80),
-                new GenerationRule(1000, 90),
-                new GenerationRule(1000, 100),
-                new GenerationRule(1000, 110)
-            });
-
-
-            this.udpateDataBindings();
-        }
+        
     }
 }

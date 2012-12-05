@@ -126,23 +126,25 @@ namespace comp4004ProjDeliverable1
 
             p.Visits = DbMethods.getInstance().getPatientVisits(p.ID);
 
-            bool isSafe = p.IsSafe(2, 1);
+            List<Patient> patients = DbMethods.getInstance().getPatientsWVisits();
+
+            bool isSafe = p.IsSafe(patients, 2, 1);
 
             Assert.True(isSafe);
 
-            isSafe = p.IsSafe(2, 2);
+            isSafe = p.IsSafe(patients, 2, 2);
 
             Assert.False(isSafe);
 
-            isSafe = p.IsSafe(3, 1);
+            isSafe = p.IsSafe(patients, 3, 1);
 
             Assert.False(isSafe);
 
-            isSafe = p.IsSafe(1, 1);
+            isSafe = p.IsSafe(patients, 1, 1);
 
             Assert.True(isSafe);
 
-            isSafe = p.IsSafe(1, 2);
+            isSafe = p.IsSafe(patients, 1, 2);
 
             Assert.False(isSafe);
         }

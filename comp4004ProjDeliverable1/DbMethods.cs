@@ -34,13 +34,20 @@ namespace comp4004ProjDeliverable1
         public void InsertPatient()
         {
             SqlCeCommand insertCommand = new SqlCeCommand("INSERT INTO Patient([Type]) VALUES('Human')", this._conn);
-            SqlCeCommand selectCommand = new SqlCeCommand("SELECT * FROM Patient WHERE ID = @@IDENTITY", this._conn);
+            
             int ID;
 
             insertCommand.ExecuteNonQuery();
             //ID = (int)selectCommand.ExecuteScalar();
 
             //Console.WriteLine("Patient " + ID + " has been inserted into the database");
+        }
+
+        public int GetLastInsertedPatientID()
+        {
+            SqlCeCommand selectCommand = new SqlCeCommand("SELECT * FROM Patient WHERE ID = @@IDENTITY", this._conn);
+
+            return (int)selectCommand.ExecuteScalar();
         }
 
         //check if patient exists
@@ -57,6 +64,13 @@ namespace comp4004ProjDeliverable1
             }
 
             return false;
+        }
+
+        public int GetLastInsertedVisitID()
+        {
+            SqlCeCommand selectCommand = new SqlCeCommand("SELECT * FROM Visit WHERE ID = @@IDENTITY", this._conn);
+
+            return (int)selectCommand.ExecuteScalar();
         }
 
         //insert visit for a patient
@@ -160,9 +174,11 @@ namespace comp4004ProjDeliverable1
             SqlCeDataAdapter dataAdapter = new SqlCeDataAdapter(selectCommand);
             DataTable dt = new DataTable();
             List<Patient> patients = new List<Patient>();
+            Stopwatch sw = new Stopwatch();
 
             dataAdapter.Fill(dt);
 
+            sw.Start();
             int idBuffer = -1;
             Patient curPatient = null;
             foreach (DataRow row in dt.Rows)
@@ -181,7 +197,7 @@ namespace comp4004ProjDeliverable1
                     curPatient.AddVisit(new Visit((int)row["visitID"], (int)row["FK_Professional"], (int)row["FK_Rational"], (DateTime)row["date"]));
                 }
             }
-
+            sw.Stop();
             return patients;
         }
 

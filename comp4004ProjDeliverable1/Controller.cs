@@ -244,7 +244,7 @@ namespace comp4004ProjDeliverable1
 
 
                 //adding safe visits
-                if (safePatientsNeeded > 0)
+                if (safePatientsNeeded >= 0)
                 {
                     if (patientsInserted % (safenessThreshold+1) == 0)
                     {
@@ -321,12 +321,18 @@ namespace comp4004ProjDeliverable1
         //return list of safe patients using the client side algorithm
         public List<Patient> getSafePatients_client(int acvSize, int safetyThreshold)
         {
-            List<Patient> patients = DbMethods.getInstance().getPatients();
+            List<Patient> patients = DbMethods.getInstance().getPatientsWVisits();
+
+            return getSafePatients_client(acvSize, safetyThreshold, patients);
+        }
+
+        public List<Patient> getSafePatients_client(int acvSize, int safetyThreshold, List<Patient> patients)
+        {
             List<Patient> safePatients = new List<Patient>();
 
             foreach (Patient p in patients)
             {
-                if (p.IsSafe(acvSize, safetyThreshold))
+                if (p.IsSafe(patients, acvSize, safetyThreshold))
                 {
                     safePatients.Add(p);
                 }
@@ -356,12 +362,17 @@ namespace comp4004ProjDeliverable1
         //get list of unsafe patients using the client side algorithm
         public List<Patient> getUnsafePatients_client(int acvSize, int safetyThreshold)
         {
-            List<Patient> patients = DbMethods.getInstance().getPatients();
+            List<Patient> patients = DbMethods.getInstance().getPatientsWVisits();
+            return getUnsafePatients_client(acvSize, safetyThreshold, patients);
+        }
+
+        public List<Patient> getUnsafePatients_client(int acvSize, int safetyThreshold, List<Patient> patients)
+        {
             List<Patient> unsafePatients = new List<Patient>();
 
             foreach (Patient p in patients)
             {
-                if (!p.IsSafe(acvSize, safetyThreshold))
+                if (!p.IsSafe(patients, acvSize, safetyThreshold))
                 {
                     unsafePatients.Add(p);
                 }

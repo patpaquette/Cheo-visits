@@ -334,9 +334,9 @@ namespace comp4004ProjDeliverable1.Model
 
             bool similar = currentSimilarVisits >= neededSimilarVisits;
             if(similar){
-                Console.WriteLine("Patient " + this.ID + " is similar to Patient " + p.ID + " because of the following visits(" + simVisits.Count + ")"); 
+                //Console.WriteLine("Patient " + this.ID + " is similar to Patient " + p.ID + " because of the following visits(" + simVisits.Count + ")"); 
                 foreach(Visit v in simVisits){
-                    Console.Write("   " + v.ToString());
+                    //Console.Write("   " + v.ToString());
                 }
             }
 

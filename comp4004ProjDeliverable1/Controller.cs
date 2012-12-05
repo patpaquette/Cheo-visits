@@ -141,7 +141,7 @@ namespace comp4004ProjDeliverable1
                             restart = false;
                             requiredNumberOfGloballyNonSimilarPatients--;
                             globallyNonSimilarPatients.Add(patient);
-                            Console.WriteLine("Patient " + patient.ID + " has been added to the blacklist");
+                           
                         }
                     }
                     else
@@ -172,12 +172,8 @@ namespace comp4004ProjDeliverable1
                 }
 
                 patients.Add(patient);
-                Console.WriteLine();
             }
 
-            Console.WriteLine("Added " + globallySimilarPatients.Count + " globally similar patients");
-            Console.WriteLine("Added " + globallyNonSimilarPatients.Count + " globally non-similar patients");
-            Console.WriteLine("Added " + patients.Count + " patients");
         }
 
         //generate data for iteration 2

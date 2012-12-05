@@ -29,7 +29,9 @@ namespace comp4004ProjDeliverable1
 
             this._CM = new List<Visit>();
             this._db = DbMethods.getInstance();
+            this._clientACVs = new List<ACV>();
             this.listRationaleAddVisit.DataSource = DbMethods.getInstance().getRationals();
+            this.disableButtons();
             
         }
 
@@ -95,6 +97,7 @@ namespace comp4004ProjDeliverable1
 
             this._patients = DbMethods.getInstance().getPatientsWVisits();
             this.udpateDataBindings();
+            this.enableButtons();
         }
 
         private void btnGenerateScenario2_Click(object sender, EventArgs e)
@@ -129,6 +132,7 @@ namespace comp4004ProjDeliverable1
 
             this._patients = DbMethods.getInstance().getPatientsWVisits();
             this.udpateDataBindings();
+            this.enableButtons();
         }
 
         private void tmpGenerationButton_Click(object sender, EventArgs e)
@@ -218,26 +222,33 @@ namespace comp4004ProjDeliverable1
 
         private void btnCheckSafety_Click(object sender, EventArgs e)
         {
-            Patient p = this._selectedPatient;
-            int size = int.Parse(tbACVSize.Text);
-            Stopwatch sw = new Stopwatch();
-            string output = "";
-
-            sw.Start();
-            if (this._selectedPatient.IsSafe(this._patients, size))
+            try
             {
-                output += "Patient " + this._selectedPatient.ID + " is safe";
-                //this.lblPatientSafety.Text = "Safe";
-            }
-            else
-            {
-                output += "Patient " + this._selectedPatient.ID + " is unsafe";
-                //this.lblPatientSafety.Text = "Unsafe";
-            }
-            sw.Stop();
+                Patient p = this._selectedPatient;
+                int size = int.Parse(tbACVSize.Text);
+                Stopwatch sw = new Stopwatch();
+                string output = "";
 
-            output += Environment.NewLine + sw.ElapsedMilliseconds + " ms";
-            this.output(output);
+                sw.Start();
+                if (this._selectedPatient.IsSafe(this._patients, size))
+                {
+                    output += "Patient " + this._selectedPatient.ID + " is safe";
+                    //this.lblPatientSafety.Text = "Safe";
+                }
+                else
+                {
+                    output += "Patient " + this._selectedPatient.ID + " is unsafe";
+                    //this.lblPatientSafety.Text = "Unsafe";
+                }
+                sw.Stop();
+
+                output += Environment.NewLine + sw.ElapsedMilliseconds + " ms";
+                this.output(output);
+            }
+            catch (StackOverflowException ex)
+            {
+                this.output("There was to many patients to process - the stack has overflowed!");
+            }
             //this.lblSafetyCheckTime.Text = sw.ElapsedMilliseconds + " ms";
         }
 
@@ -312,44 +323,59 @@ namespace comp4004ProjDeliverable1
 
         private void btnGetSafePatients_Click(object sender, EventArgs e)
         {
-            int safetyThreshold = int.Parse(this.tbSafetyThreshold.Text);
-            int acvSize = int.Parse(this.tbACVSize.Text);
-            string output = "";
-            Stopwatch sw = new Stopwatch();
-            
-            sw.Start();
-            List<Patient> safePatients = this._controller.getSafePatients_client(acvSize, safetyThreshold);
-
-            foreach (Patient p in safePatients)
+            try
             {
-                output += p.ToString() + Environment.NewLine;
-            }
-            sw.Stop();
+                int safetyThreshold = int.Parse(this.tbSafetyThreshold.Text);
+                int acvSize = int.Parse(this.tbACVSize.Text);
+                string output = "";
+                Stopwatch sw = new Stopwatch();
 
-            output += sw.ElapsedMilliseconds + " ms";
-            //this.lblGetSafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
-            this.output(output);
+                sw.Start();
+                List<Patient> safePatients = this._controller.getSafePatients_client(acvSize, safetyThreshold);
+
+                foreach (Patient p in safePatients)
+                {
+                    output += p.ToString() + Environment.NewLine;
+                }
+                sw.Stop();
+
+                output += sw.ElapsedMilliseconds + " ms";
+                //this.lblGetSafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
+                this.output(output);
+            }
+            catch (System.Exception ex)
+            {
+                this.output("There was to many patients to process - the stack has overflowed!");
+            }
+            
         }
 
         private void btnGetUnsafePatients_Click(object sender, EventArgs e)
         {
-            int safetyThreshold = int.Parse(this.tbSafetyThreshold.Text);
-            int acvSize = int.Parse(this.tbACVSize.Text);
-            string output = "";
-            Stopwatch sw = new Stopwatch();
-            
-            sw.Start();
-            List<Patient> unsafePatients = this._controller.getUnsafePatients_client(acvSize, safetyThreshold);
-
-            foreach (Patient p in unsafePatients)
+            try
             {
-                output += p.ToString() + Environment.NewLine;
-            }
-            sw.Stop();
+                int safetyThreshold = int.Parse(this.tbSafetyThreshold.Text);
+                int acvSize = int.Parse(this.tbACVSize.Text);
+                string output = "";
+                Stopwatch sw = new Stopwatch();
 
-            output += sw.ElapsedMilliseconds + " ms";
-            //this.lblGetUnsafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
-            this.output(output);
+                sw.Start();
+                List<Patient> unsafePatients = this._controller.getUnsafePatients_client(acvSize, safetyThreshold);
+
+                foreach (Patient p in unsafePatients)
+                {
+                    output += p.ToString() + Environment.NewLine;
+                }
+                sw.Stop();
+
+                output += sw.ElapsedMilliseconds + " ms";
+                //this.lblGetUnsafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
+                this.output(output);
+            }
+            catch (System.Exception ex)
+            {
+                this.output("There was to many patients to process - the stack has overflowed!");
+            }
         }
 
         private void UI_FormClosing(Object sender, FormClosingEventArgs e)
@@ -389,6 +415,34 @@ namespace comp4004ProjDeliverable1
 
         }
 
+        private void disableButtons()
+        {
+            btnAddToCM.Enabled = false;
+            btnGetSafePatients.Enabled = false;
+            btnGetUnsafePatients.Enabled = false;
+            btnAddVisitpatient.Enabled = false;
+            btnAddVisitToCM.Enabled = false;
+            btnMatchCM.Enabled = false;
+            btnGenerateACVs.Enabled = false;
+            btnShowACVs.Enabled = false;
+            btnCheckSafety.Enabled = false;
+            btnAddVisitsFromFile.Enabled = false;
+        }
+
+
+        private void enableButtons()
+        {
+            btnAddToCM.Enabled = true;
+            btnGetSafePatients.Enabled = true;
+            btnGetUnsafePatients.Enabled = true;
+            btnAddVisitpatient.Enabled = true;
+            btnAddVisitToCM.Enabled = true;
+            btnMatchCM.Enabled = true;
+            btnGenerateACVs.Enabled = true;
+            btnShowACVs.Enabled = true;
+            btnCheckSafety.Enabled = true;
+            btnAddVisitsFromFile.Enabled = true;
+        }
         
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace comp4004ProjDeliverable1
+namespace comp4004ProjDeliverable1.Tests
 {
     using Model;
 

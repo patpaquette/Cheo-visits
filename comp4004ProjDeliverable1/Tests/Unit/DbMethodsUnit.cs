@@ -6,7 +6,7 @@ using Xunit;
 using System.Data.SqlServerCe;
 using System.Data;
 
-namespace comp4004ProjDeliverable1
+namespace comp4004ProjDeliverable1.Tests
 {
     using Model;
 

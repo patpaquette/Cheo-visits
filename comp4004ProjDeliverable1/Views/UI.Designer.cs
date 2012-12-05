@@ -35,12 +35,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tbBrowse = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnAddVisitsFromFile = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.listPatients = new System.Windows.Forms.ListBox();
             this.listPatientVisits = new System.Windows.Forms.ListBox();
-            this.tmpGenerationButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.listRationaleAddVisit = new System.Windows.Forms.ListBox();
@@ -54,11 +53,11 @@
             this.btnCheckSafety = new System.Windows.Forms.Button();
             this.lblPatientSafety = new System.Windows.Forms.Label();
             this.lblSafetyCheckTime = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddVisitToCM = new System.Windows.Forms.Button();
             this.listCM = new System.Windows.Forms.ListBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnAddToCM = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnMatchCM = new System.Windows.Forms.Button();
             this.lblMatchCMTime = new System.Windows.Forms.Label();
             this.tbOutput = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -143,15 +142,15 @@
             this.tbBrowse.TabIndex = 7;
             this.tbBrowse.Text = "Data/VisitDataTest.txt";
             // 
-            // button4
+            // btnAddVisitsFromFile
             // 
-            this.button4.Location = new System.Drawing.Point(436, 113);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Generate";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnAddVisitsFromFile.Location = new System.Drawing.Point(436, 113);
+            this.btnAddVisitsFromFile.Name = "btnAddVisitsFromFile";
+            this.btnAddVisitsFromFile.Size = new System.Drawing.Size(75, 23);
+            this.btnAddVisitsFromFile.TabIndex = 8;
+            this.btnAddVisitsFromFile.Text = "Add visits";
+            this.btnAddVisitsFromFile.UseVisualStyleBackColor = true;
+            this.btnAddVisitsFromFile.Click += new System.EventHandler(this.button4_Click);
             // 
             // label5
             // 
@@ -187,16 +186,6 @@
             this.listPatientVisits.Name = "listPatientVisits";
             this.listPatientVisits.Size = new System.Drawing.Size(147, 381);
             this.listPatientVisits.TabIndex = 13;
-            // 
-            // tmpGenerationButton
-            // 
-            this.tmpGenerationButton.Location = new System.Drawing.Point(26, 116);
-            this.tmpGenerationButton.Name = "tmpGenerationButton";
-            this.tmpGenerationButton.Size = new System.Drawing.Size(75, 23);
-            this.tmpGenerationButton.TabIndex = 14;
-            this.tmpGenerationButton.Text = "TEMP";
-            this.tmpGenerationButton.UseVisualStyleBackColor = true;
-            this.tmpGenerationButton.Click += new System.EventHandler(this.tmpGenerationButton_Click);
             // 
             // label8
             // 
@@ -311,15 +300,15 @@
             this.lblSafetyCheckTime.Size = new System.Drawing.Size(0, 13);
             this.lblSafetyCheckTime.TabIndex = 34;
             // 
-            // button1
+            // btnAddVisitToCM
             // 
-            this.button1.Location = new System.Drawing.Point(398, 624);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 22);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Add visit to CM";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAddVisitToCM.Location = new System.Drawing.Point(398, 624);
+            this.btnAddVisitToCM.Name = "btnAddVisitToCM";
+            this.btnAddVisitToCM.Size = new System.Drawing.Size(120, 22);
+            this.btnAddVisitToCM.TabIndex = 35;
+            this.btnAddVisitToCM.Text = "Add visit to CM";
+            this.btnAddVisitToCM.UseVisualStyleBackColor = true;
+            this.btnAddVisitToCM.Click += new System.EventHandler(this.button1_Click);
             // 
             // listCM
             // 
@@ -348,15 +337,15 @@
             this.btnAddToCM.UseVisualStyleBackColor = true;
             this.btnAddToCM.Click += new System.EventHandler(this.btnAddToCM_Click);
             // 
-            // button2
+            // btnMatchCM
             // 
-            this.button2.Location = new System.Drawing.Point(559, 460);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 23);
-            this.button2.TabIndex = 39;
-            this.button2.Text = "Match CM";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnMatchCM.Location = new System.Drawing.Point(559, 460);
+            this.btnMatchCM.Name = "btnMatchCM";
+            this.btnMatchCM.Size = new System.Drawing.Size(88, 23);
+            this.btnMatchCM.TabIndex = 39;
+            this.btnMatchCM.Text = "Match CM";
+            this.btnMatchCM.UseVisualStyleBackColor = true;
+            this.btnMatchCM.Click += new System.EventHandler(this.button2_Click);
             // 
             // lblMatchCMTime
             // 
@@ -509,11 +498,11 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.tbOutput);
             this.Controls.Add(this.lblMatchCMTime);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnMatchCM);
             this.Controls.Add(this.btnAddToCM);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.listCM);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddVisitToCM);
             this.Controls.Add(this.lblSafetyCheckTime);
             this.Controls.Add(this.lblPatientSafety);
             this.Controls.Add(this.btnCheckSafety);
@@ -527,12 +516,11 @@
             this.Controls.Add(this.listRationaleAddVisit);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.tmpGenerationButton);
             this.Controls.Add(this.listPatientVisits);
             this.Controls.Add(this.listPatients);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnAddVisitsFromFile);
             this.Controls.Add(this.tbBrowse);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -558,12 +546,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbBrowse;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnAddVisitsFromFile;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox listPatients;
         private System.Windows.Forms.ListBox listPatientVisits;
-        private System.Windows.Forms.Button tmpGenerationButton;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox listRationaleAddVisit;
@@ -577,11 +564,11 @@
         private System.Windows.Forms.Button btnCheckSafety;
         private System.Windows.Forms.Label lblPatientSafety;
         private System.Windows.Forms.Label lblSafetyCheckTime;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddVisitToCM;
         private System.Windows.Forms.ListBox listCM;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnAddToCM;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnMatchCM;
         private System.Windows.Forms.Label lblMatchCMTime;
         private System.Windows.Forms.TextBox tbOutput;
         private System.Windows.Forms.Label label15;

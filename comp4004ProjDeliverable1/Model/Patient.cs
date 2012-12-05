@@ -13,6 +13,7 @@ namespace comp4004ProjDeliverable1.Model
         private int _ID;
         private List<Visit> _visits;
         private bool _safe;
+        private bool _safetyAssessed;
         private int _safeNessThreshold = 4;
         private List<Patient> _safetyPatientsBuffer;
 
@@ -67,6 +68,8 @@ namespace comp4004ProjDeliverable1.Model
 
         public bool IsStillSafe(List<Patient> patients, int acvSize, Visit newVisit)
         {
+            if (!this._safetyAssessed)
+                return this.IsSafe(patients, acvSize, null);
             if(this._safe == true)
                 return this.IsSafe(patients, acvSize, newVisit);
 

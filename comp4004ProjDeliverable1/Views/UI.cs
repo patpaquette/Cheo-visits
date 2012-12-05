@@ -170,6 +170,7 @@ namespace comp4004ProjDeliverable1
             int professionalID = r.Next(1, 10);
             Stopwatch sw = new Stopwatch();
             //List<Patient> patients = this._db.getPatientsWVisits();
+            string output = "";
 
             this._db.InsertVisit(this._selectedPatient.ID, professionalID, rational, date);
             int visitId = this._db.GetLastInsertedVisitID();
@@ -179,15 +180,20 @@ namespace comp4004ProjDeliverable1
             sw.Start();
             if(this._selectedPatient.IsStillSafe(this._patients, acvSize, new Visit(-1, professionalID, rational, date)))
             {
-                this.lblPatientSafety.Text = "Safe";
+                output += "Patient " + this._selectedPatient.ID + " is safe";
+                //this.lblPatientSafety.Text = "Safe";
             }
             else
             {
-                this.lblPatientSafety.Text = "Unsafe";
+                output += "Patient " + this._selectedPatient.ID + " is unsafe";
+                //this.lblPatientSafety.Text = "Unsafe";
             }
             sw.Stop();
 
-            this.lblSafetyCheckTime.Text = sw.ElapsedMilliseconds + " ms";
+            output += Environment.NewLine + sw.ElapsedMilliseconds + " ms";
+            //this.lblSafetyCheckTime.Text = sw.ElapsedMilliseconds + " ms";
+
+            this.output(output);
         }
 
         private void btnGenerateACVs_Click(object sender, EventArgs e)
@@ -200,7 +206,9 @@ namespace comp4004ProjDeliverable1
             this._clientACVs = this._controller.retrievePatientACV_clientBased(this._selectedPatient.ID, size);
             sw.Stop();
 
-            this.lblACVTime.Text = this._clientACVs.Count + " ACVs in " + sw.ElapsedMilliseconds + " ms";
+            this.output("Generated " + this._clientACVs.Count + " ACVs in " + sw.ElapsedMilliseconds + " ms");
+
+            //this.lblACVTime.Text = this._clientACVs.Count + " ACVs in " + sw.ElapsedMilliseconds + " ms";
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -213,19 +221,24 @@ namespace comp4004ProjDeliverable1
             Patient p = this._selectedPatient;
             int size = int.Parse(tbACVSize.Text);
             Stopwatch sw = new Stopwatch();
+            string output = "";
 
             sw.Start();
             if (this._selectedPatient.IsSafe(this._patients, size))
             {
-                this.lblPatientSafety.Text = "Safe";
+                output += "Patient " + this._selectedPatient.ID + " is safe";
+                //this.lblPatientSafety.Text = "Safe";
             }
             else
             {
-                this.lblPatientSafety.Text = "Unsafe";
+                output += "Patient " + this._selectedPatient.ID + " is unsafe";
+                //this.lblPatientSafety.Text = "Unsafe";
             }
             sw.Stop();
 
-            this.lblSafetyCheckTime.Text = sw.ElapsedMilliseconds + " ms";
+            output += Environment.NewLine + sw.ElapsedMilliseconds + " ms";
+            this.output(output);
+            //this.lblSafetyCheckTime.Text = sw.ElapsedMilliseconds + " ms";
         }
 
         private void btnAddToCM_Click(object sender, EventArgs e)
@@ -251,7 +264,6 @@ namespace comp4004ProjDeliverable1
         {
             List<Visit> visits = this._CM;
             List<Patient> patients = this._patients;
-            patients.Remove(this._selectedPatient);
             Stopwatch sw = new Stopwatch();
             List<Patient> matchedPatients = new List<Patient>();
             string output = "";
@@ -271,8 +283,9 @@ namespace comp4004ProjDeliverable1
                 output += p.ToString() + Environment.NewLine;
             }
 
+            output += sw.ElapsedMilliseconds + " ms";
             this.output(output);
-            this.lblMatchCMTime.Text = sw.ElapsedMilliseconds + " ms";
+            //this.lblMatchCMTime.Text = sw.ElapsedMilliseconds + " ms";
         }
 
         private void output(string output)
@@ -313,7 +326,8 @@ namespace comp4004ProjDeliverable1
             }
             sw.Stop();
 
-            this.lblGetSafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
+            output += sw.ElapsedMilliseconds + " ms";
+            //this.lblGetSafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
             this.output(output);
         }
 
@@ -333,7 +347,8 @@ namespace comp4004ProjDeliverable1
             }
             sw.Stop();
 
-            this.lblGetUnsafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
+            output += sw.ElapsedMilliseconds + " ms";
+            //this.lblGetUnsafePatientsTime.Text = sw.ElapsedMilliseconds + " ms";
             this.output(output);
         }
 

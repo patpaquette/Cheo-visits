@@ -51,7 +51,6 @@
             this.btnGenerateACVs = new System.Windows.Forms.Button();
             this.btnShowACVs = new System.Windows.Forms.Button();
             this.lblACVTime = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.btnCheckSafety = new System.Windows.Forms.Button();
             this.lblPatientSafety = new System.Windows.Forms.Label();
             this.lblSafetyCheckTime = new System.Windows.Forms.Label();
@@ -60,7 +59,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.btnAddToCM = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
             this.lblMatchCMTime = new System.Windows.Forms.Label();
             this.tbOutput = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -158,7 +156,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 241);
+            this.label5.Location = new System.Drawing.Point(12, 207);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 9;
@@ -167,7 +165,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(173, 241);
+            this.label6.Location = new System.Drawing.Point(173, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 11;
@@ -176,7 +174,7 @@
             // listPatients
             // 
             this.listPatients.FormattingEnabled = true;
-            this.listPatients.Location = new System.Drawing.Point(12, 257);
+            this.listPatients.Location = new System.Drawing.Point(12, 223);
             this.listPatients.Name = "listPatients";
             this.listPatients.Size = new System.Drawing.Size(152, 628);
             this.listPatients.TabIndex = 12;
@@ -185,7 +183,7 @@
             // listPatientVisits
             // 
             this.listPatientVisits.FormattingEnabled = true;
-            this.listPatientVisits.Location = new System.Drawing.Point(170, 257);
+            this.listPatientVisits.Location = new System.Drawing.Point(170, 223);
             this.listPatientVisits.Name = "listPatientVisits";
             this.listPatientVisits.Size = new System.Drawing.Size(147, 381);
             this.listPatientVisits.TabIndex = 13;
@@ -203,7 +201,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(167, 702);
+            this.label8.Location = new System.Drawing.Point(167, 668);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 13);
             this.label8.TabIndex = 19;
@@ -212,7 +210,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(406, 702);
+            this.label9.Location = new System.Drawing.Point(406, 668);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 13);
             this.label9.TabIndex = 20;
@@ -221,14 +219,14 @@
             // listRationaleAddVisit
             // 
             this.listRationaleAddVisit.FormattingEnabled = true;
-            this.listRationaleAddVisit.Location = new System.Drawing.Point(409, 724);
+            this.listRationaleAddVisit.Location = new System.Drawing.Point(409, 690);
             this.listRationaleAddVisit.Name = "listRationaleAddVisit";
             this.listRationaleAddVisit.Size = new System.Drawing.Size(120, 160);
             this.listRationaleAddVisit.TabIndex = 21;
             // 
             // btnAddVisitpatient
             // 
-            this.btnAddVisitpatient.Location = new System.Drawing.Point(176, 658);
+            this.btnAddVisitpatient.Location = new System.Drawing.Point(176, 624);
             this.btnAddVisitpatient.Name = "btnAddVisitpatient";
             this.btnAddVisitpatient.Size = new System.Drawing.Size(120, 24);
             this.btnAddVisitpatient.TabIndex = 22;
@@ -238,14 +236,14 @@
             // 
             // calendarAddVisit
             // 
-            this.calendarAddVisit.Location = new System.Drawing.Point(170, 724);
+            this.calendarAddVisit.Location = new System.Drawing.Point(170, 690);
             this.calendarAddVisit.Name = "calendarAddVisit";
             this.calendarAddVisit.TabIndex = 23;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(557, 257);
+            this.label7.Location = new System.Drawing.Point(557, 223);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 13);
             this.label7.TabIndex = 24;
@@ -253,7 +251,7 @@
             // 
             // tbACVSize
             // 
-            this.tbACVSize.Location = new System.Drawing.Point(618, 254);
+            this.tbACVSize.Location = new System.Drawing.Point(618, 220);
             this.tbACVSize.Name = "tbACVSize";
             this.tbACVSize.Size = new System.Drawing.Size(30, 20);
             this.tbACVSize.TabIndex = 25;
@@ -261,7 +259,7 @@
             // 
             // btnGenerateACVs
             // 
-            this.btnGenerateACVs.Location = new System.Drawing.Point(560, 280);
+            this.btnGenerateACVs.Location = new System.Drawing.Point(560, 246);
             this.btnGenerateACVs.Name = "btnGenerateACVs";
             this.btnGenerateACVs.Size = new System.Drawing.Size(88, 23);
             this.btnGenerateACVs.TabIndex = 26;
@@ -271,7 +269,7 @@
             // 
             // btnShowACVs
             // 
-            this.btnShowACVs.Location = new System.Drawing.Point(560, 309);
+            this.btnShowACVs.Location = new System.Drawing.Point(560, 275);
             this.btnShowACVs.Name = "btnShowACVs";
             this.btnShowACVs.Size = new System.Drawing.Size(88, 23);
             this.btnShowACVs.TabIndex = 27;
@@ -282,24 +280,14 @@
             // lblACVTime
             // 
             this.lblACVTime.AutoSize = true;
-            this.lblACVTime.Location = new System.Drawing.Point(654, 285);
+            this.lblACVTime.Location = new System.Drawing.Point(654, 251);
             this.lblACVTime.Name = "lblACVTime";
             this.lblACVTime.Size = new System.Drawing.Size(0, 13);
             this.lblACVTime.TabIndex = 29;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(560, 368);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 13);
-            this.label11.TabIndex = 30;
-            this.label11.Text = "Patient safety :";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
             // btnCheckSafety
             // 
-            this.btnCheckSafety.Location = new System.Drawing.Point(560, 338);
+            this.btnCheckSafety.Location = new System.Drawing.Point(560, 304);
             this.btnCheckSafety.Name = "btnCheckSafety";
             this.btnCheckSafety.Size = new System.Drawing.Size(119, 23);
             this.btnCheckSafety.TabIndex = 31;
@@ -310,7 +298,7 @@
             // lblPatientSafety
             // 
             this.lblPatientSafety.AutoSize = true;
-            this.lblPatientSafety.Location = new System.Drawing.Point(640, 368);
+            this.lblPatientSafety.Location = new System.Drawing.Point(640, 334);
             this.lblPatientSafety.Name = "lblPatientSafety";
             this.lblPatientSafety.Size = new System.Drawing.Size(0, 13);
             this.lblPatientSafety.TabIndex = 32;
@@ -318,14 +306,14 @@
             // lblSafetyCheckTime
             // 
             this.lblSafetyCheckTime.AutoSize = true;
-            this.lblSafetyCheckTime.Location = new System.Drawing.Point(685, 343);
+            this.lblSafetyCheckTime.Location = new System.Drawing.Point(685, 309);
             this.lblSafetyCheckTime.Name = "lblSafetyCheckTime";
             this.lblSafetyCheckTime.Size = new System.Drawing.Size(0, 13);
             this.lblSafetyCheckTime.TabIndex = 34;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(398, 658);
+            this.button1.Location = new System.Drawing.Point(398, 624);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 22);
             this.button1.TabIndex = 35;
@@ -336,7 +324,7 @@
             // listCM
             // 
             this.listCM.FormattingEnabled = true;
-            this.listCM.Location = new System.Drawing.Point(382, 257);
+            this.listCM.Location = new System.Drawing.Point(382, 223);
             this.listCM.Name = "listCM";
             this.listCM.Size = new System.Drawing.Size(153, 381);
             this.listCM.TabIndex = 36;
@@ -344,7 +332,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(379, 241);
+            this.label13.Location = new System.Drawing.Point(379, 207);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(23, 13);
             this.label13.TabIndex = 37;
@@ -352,7 +340,7 @@
             // 
             // btnAddToCM
             // 
-            this.btnAddToCM.Location = new System.Drawing.Point(333, 317);
+            this.btnAddToCM.Location = new System.Drawing.Point(333, 283);
             this.btnAddToCM.Name = "btnAddToCM";
             this.btnAddToCM.Size = new System.Drawing.Size(33, 310);
             this.btnAddToCM.TabIndex = 38;
@@ -362,7 +350,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(560, 571);
+            this.button2.Location = new System.Drawing.Point(559, 460);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(88, 23);
             this.button2.TabIndex = 39;
@@ -370,26 +358,17 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(557, 598);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(99, 13);
-            this.label14.TabIndex = 40;
-            this.label14.Text = "Time to match CM :";
-            // 
             // lblMatchCMTime
             // 
             this.lblMatchCMTime.AutoSize = true;
-            this.lblMatchCMTime.Location = new System.Drawing.Point(654, 576);
+            this.lblMatchCMTime.Location = new System.Drawing.Point(653, 507);
             this.lblMatchCMTime.Name = "lblMatchCMTime";
             this.lblMatchCMTime.Size = new System.Drawing.Size(0, 13);
             this.lblMatchCMTime.TabIndex = 41;
             // 
             // tbOutput
             // 
-            this.tbOutput.Location = new System.Drawing.Point(816, 254);
+            this.tbOutput.Location = new System.Drawing.Point(692, 220);
             this.tbOutput.Multiline = true;
             this.tbOutput.Name = "tbOutput";
             this.tbOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -399,7 +378,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(813, 238);
+            this.label15.Location = new System.Drawing.Point(689, 204);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(39, 13);
             this.label15.TabIndex = 43;
@@ -408,7 +387,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(232, 644);
+            this.label16.Location = new System.Drawing.Point(232, 610);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(13, 13);
             this.label16.TabIndex = 44;
@@ -417,7 +396,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(453, 644);
+            this.label17.Location = new System.Drawing.Point(453, 610);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(13, 13);
             this.label17.TabIndex = 45;
@@ -425,7 +404,7 @@
             // 
             // btnGetSafePatients
             // 
-            this.btnGetSafePatients.Location = new System.Drawing.Point(561, 441);
+            this.btnGetSafePatients.Location = new System.Drawing.Point(560, 372);
             this.btnGetSafePatients.Name = "btnGetSafePatients";
             this.btnGetSafePatients.Size = new System.Drawing.Size(119, 23);
             this.btnGetSafePatients.TabIndex = 46;
@@ -435,7 +414,7 @@
             // 
             // btnGetUnsafePatients
             // 
-            this.btnGetUnsafePatients.Location = new System.Drawing.Point(561, 470);
+            this.btnGetUnsafePatients.Location = new System.Drawing.Point(560, 401);
             this.btnGetUnsafePatients.Name = "btnGetUnsafePatients";
             this.btnGetUnsafePatients.Size = new System.Drawing.Size(119, 23);
             this.btnGetUnsafePatients.TabIndex = 47;
@@ -445,7 +424,7 @@
             // 
             // tbSafetyThreshold
             // 
-            this.tbSafetyThreshold.Location = new System.Drawing.Point(645, 419);
+            this.tbSafetyThreshold.Location = new System.Drawing.Point(644, 350);
             this.tbSafetyThreshold.Name = "tbSafetyThreshold";
             this.tbSafetyThreshold.Size = new System.Drawing.Size(30, 20);
             this.tbSafetyThreshold.TabIndex = 49;
@@ -454,7 +433,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(560, 422);
+            this.label18.Location = new System.Drawing.Point(559, 353);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(83, 13);
             this.label18.TabIndex = 48;
@@ -463,7 +442,7 @@
             // lblGetSafePatientsTime
             // 
             this.lblGetSafePatientsTime.AutoSize = true;
-            this.lblGetSafePatientsTime.Location = new System.Drawing.Point(686, 446);
+            this.lblGetSafePatientsTime.Location = new System.Drawing.Point(686, 412);
             this.lblGetSafePatientsTime.Name = "lblGetSafePatientsTime";
             this.lblGetSafePatientsTime.Size = new System.Drawing.Size(0, 13);
             this.lblGetSafePatientsTime.TabIndex = 50;
@@ -471,7 +450,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(623, 450);
+            this.label10.Location = new System.Drawing.Point(622, 381);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 51;
@@ -479,7 +458,7 @@
             // lblGetUnsafePatientsTime
             // 
             this.lblGetUnsafePatientsTime.AutoSize = true;
-            this.lblGetUnsafePatientsTime.Location = new System.Drawing.Point(685, 475);
+            this.lblGetUnsafePatientsTime.Location = new System.Drawing.Point(685, 441);
             this.lblGetUnsafePatientsTime.Name = "lblGetUnsafePatientsTime";
             this.lblGetUnsafePatientsTime.Size = new System.Drawing.Size(0, 13);
             this.lblGetUnsafePatientsTime.TabIndex = 52;
@@ -514,7 +493,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1292, 913);
+            this.ClientSize = new System.Drawing.Size(1155, 913);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.tbPatientSafetyPercentage);
@@ -530,7 +509,6 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.tbOutput);
             this.Controls.Add(this.lblMatchCMTime);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnAddToCM);
             this.Controls.Add(this.label13);
@@ -539,7 +517,6 @@
             this.Controls.Add(this.lblSafetyCheckTime);
             this.Controls.Add(this.lblPatientSafety);
             this.Controls.Add(this.btnCheckSafety);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.lblACVTime);
             this.Controls.Add(this.btnShowACVs);
             this.Controls.Add(this.btnGenerateACVs);
@@ -597,7 +574,6 @@
         private System.Windows.Forms.Button btnGenerateACVs;
         private System.Windows.Forms.Button btnShowACVs;
         private System.Windows.Forms.Label lblACVTime;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnCheckSafety;
         private System.Windows.Forms.Label lblPatientSafety;
         private System.Windows.Forms.Label lblSafetyCheckTime;
@@ -606,7 +582,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnAddToCM;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblMatchCMTime;
         private System.Windows.Forms.TextBox tbOutput;
         private System.Windows.Forms.Label label15;

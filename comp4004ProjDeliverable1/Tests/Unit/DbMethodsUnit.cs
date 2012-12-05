@@ -48,9 +48,13 @@ namespace comp4004ProjDeliverable1
         [Fact]
         public void addPatientTest()
         {
-            int patientsNumber = DbMethods.getInstance().getPatientsCount();
+            DbMethods.getInstance().clearTables();
 
-            int patientID = DbMethods.getInstance().InsertPatient();
+            int patientsNumber = DbMethods.getInstance().getPatientsCount();
+            int patientID = 0;
+                
+            DbMethods.getInstance().InsertPatient();
+            
             int newPatientsNumber = DbMethods.getInstance().getPatientsCount();
             Assert.True(newPatientsNumber > patientsNumber);
 
@@ -60,16 +64,16 @@ namespace comp4004ProjDeliverable1
         [Fact]
         public void insertVisitTest()
         {
-            int patientID = DbMethods.getInstance().InsertPatient();
+            DbMethods.getInstance().clearTables();
+            int patientID = 0;
+                
+            DbMethods.getInstance().InsertPatient();
         
             int visitsNumber = DbMethods.getInstance().getVisitsCount(patientID);
 
-            int visitID = DbMethods.getInstance().InsertVisit(patientID, 1, 1, DateTime.Now);
+            DbMethods.getInstance().InsertVisit(patientID, 1, 1, DateTime.Now);
             int newVisitsNumber = DbMethods.getInstance().getVisitsCount(patientID);
             Assert.True(newVisitsNumber > visitsNumber);
-
-            this.deleteVisit(visitID);
-            this.deletePatient(patientID);
         }
 
         [Fact]

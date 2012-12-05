@@ -31,17 +31,16 @@ namespace comp4004ProjDeliverable1
         }
 
         //insert patients in database
-        public int InsertPatient()
+        public void InsertPatient()
         {
             SqlCeCommand insertCommand = new SqlCeCommand("INSERT INTO Patient([Type]) VALUES('Human')", this._conn);
             SqlCeCommand selectCommand = new SqlCeCommand("SELECT * FROM Patient WHERE ID = @@IDENTITY", this._conn);
             int ID;
 
             insertCommand.ExecuteNonQuery();
-            ID = (int)selectCommand.ExecuteScalar();
+            //ID = (int)selectCommand.ExecuteScalar();
 
             //Console.WriteLine("Patient " + ID + " has been inserted into the database");
-            return ID;
         }
 
         //check if patient exists
@@ -61,7 +60,7 @@ namespace comp4004ProjDeliverable1
         }
 
         //insert visit for a patient
-        public int InsertVisit(int patientID, int professionalID, int rationalID, DateTime date) 
+        public void InsertVisit(int patientID, int professionalID, int rationalID, DateTime date) 
         {
             SqlCeCommand insertCommand = new SqlCeCommand("INSERT INTO Visit([FK_Patient], [FK_Professional], [FK_Rational], [date]) VALUES(@patientID, @professionalID, @rationalID, @date)", this._conn);
             SqlCeCommand selectCommand = new SqlCeCommand("SELECT ID FROM Visit WHERE ID = @@IDENTITY", this._conn);
@@ -73,10 +72,9 @@ namespace comp4004ProjDeliverable1
             insertCommand.Parameters.AddWithValue("@date", date);
 
             insertCommand.ExecuteNonQuery();
-            ID = (int)selectCommand.ExecuteScalar();
+            //ID = (int)selectCommand.ExecuteScalar();
 
             //Console.WriteLine("Visit added, ID : " + ID + ", Date : " + date + ", Rational : " + rationalID + " - " + this.getRational(rationalID));
-            return ID;
         }
 
         public void InsertVisits(Dictionary<int, List<Visit>> data)

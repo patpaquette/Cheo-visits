@@ -51,11 +51,13 @@ namespace comp4004ProjDeliverable1
             int randRationalMin = 1;
             int randRationalMax = 5;
 
-            
+
+            DbMethods.getInstance().clearTables();
 
             for (int i = 0; i < numberOfPatients; i++)
             {
-                int patientID = DbMethods.getInstance().InsertPatient();
+                int patientID = i;
+                DbMethods.getInstance().InsertPatient();
                 Patient patient = new Patient(patientID);
                 PatientMatchNode patientNode = new PatientMatchNode(patient);
                 
@@ -166,7 +168,7 @@ namespace comp4004ProjDeliverable1
                 //adding the visits
                 foreach (Visit v in patient.Visits)
                 {
-                    v.ID = DbMethods.getInstance().InsertVisit(patientID, v.ProfessionalID, v.RationalID, v.Date);
+                    DbMethods.getInstance().InsertVisit(patientID, v.ProfessionalID, v.RationalID, v.Date);
                 }
 
                 patients.Add(patient);
@@ -186,9 +188,12 @@ namespace comp4004ProjDeliverable1
             int randRationalMin = 1;
             int randRationalMax = 5;
 
+            DbMethods.getInstance().clearTables();
+
             for (int i = 0; i < 5; i++)
             {
-                int id = DbMethods.getInstance().InsertPatient();
+                int id = i;
+                DbMethods.getInstance().InsertPatient();
                 for(int j = 0; j < 10; j++)
                 {
                     DbMethods.getInstance().InsertVisit(id, j, 2, now);
@@ -197,7 +202,8 @@ namespace comp4004ProjDeliverable1
 
             for (int i = 5; i < numPatients; i++)
             {
-                int id = DbMethods.getInstance().InsertPatient();
+                int id = i;
+                DbMethods.getInstance().InsertPatient();
                 for (int j = 0; j < 20; j++)
                 {
                     DbMethods.getInstance().InsertVisit(id, random.Next(1, 10), random.Next(randRationalMin, randRationalMax), Util.getRandomDate(new DateTime(2012, 01, 01), new DateTime(2012, 12, 31)));
@@ -221,7 +227,9 @@ namespace comp4004ProjDeliverable1
             Random r = new Random();
             List<Visit> safeVisitsBuffer = new List<Visit>();
             DbMethods db = DbMethods.getInstance();
-            
+            int counter = 0;
+
+            db.clearTables();
 
             while (patientsInserted < patientCount)
             {
@@ -230,7 +238,8 @@ namespace comp4004ProjDeliverable1
                     currentRule = generationRules.Dequeue();
                 }
 
-                int patientID = db.InsertPatient();
+                db.InsertPatient();
+                int patientID = patientsInserted;//db.InsertPatient();
                 int visitsLeft = currentRule.VisitsAllowed;
 
 

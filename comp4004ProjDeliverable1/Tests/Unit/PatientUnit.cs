@@ -47,15 +47,19 @@ namespace comp4004ProjDeliverable1
         [Fact]
         public void findACVTest()
         {
-            Patient p1 = new Patient(1);
+            
             DateTime now = DateTime.Now;
             this._patientACV = new List<ACV>();
             int ACVSize = 3;
 
-            p1.AddVisit(new Visit(1, 1, 1, now));
-            p1.AddVisit(new Visit(2, 1, 2, now));
-            p1.AddVisit(new Visit(3, 1, 3, now));
-            p1.AddVisit(new Visit(4, 1, 3, now.AddDays(1)));
+            DbMethods.getInstance().clearTables();
+            DbMethods.getInstance().InsertPatient();
+            DbMethods.getInstance().InsertVisit(0, 1, 1, now);
+            DbMethods.getInstance().InsertVisit(0, 1, 2, now);
+            DbMethods.getInstance().InsertVisit(0, 1, 3, now);
+            DbMethods.getInstance().InsertVisit(0, 1, 4, now.AddDays(1));
+
+            Patient p1 = new Patient(0);
 
             p1.FindACVs(ACVSize, PatientACVFound);
 
@@ -66,17 +70,23 @@ namespace comp4004ProjDeliverable1
         public void matchACVTest()
         {
             this._patientACV = new List<ACV>();
-            Patient p1 = new Patient(1);
-            Patient p2 = new Patient(2);
             DateTime now = DateTime.Now;
 
-            p1.AddVisit(new Visit(1, 1, 1, now));
-            p1.AddVisit(new Visit(2, 1, 2, now));
-            p1.AddVisit(new Visit(3, 1, 3, now));
+            
 
-            p2.AddVisit(new Visit(1, 1, 1, now));
-            p2.AddVisit(new Visit(2, 1, 2, now));
-            p2.AddVisit(new Visit(3, 1, 3, now));
+            DbMethods.getInstance().clearTables();
+            DbMethods.getInstance().InsertPatient();
+            DbMethods.getInstance().InsertVisit(0, 1, 1, now);
+            DbMethods.getInstance().InsertVisit(0, 1, 2, now);
+            DbMethods.getInstance().InsertVisit(0, 1, 3, now);
+
+            DbMethods.getInstance().InsertPatient();
+            DbMethods.getInstance().InsertVisit(1, 1, 1, now);
+            DbMethods.getInstance().InsertVisit(1, 1, 2, now);
+            DbMethods.getInstance().InsertVisit(1, 1, 3, now);
+
+            Patient p1 = new Patient(0);
+            Patient p2 = new Patient(1);
 
             p2.FindACVs(2, PatientACVFound);
 
@@ -89,11 +99,18 @@ namespace comp4004ProjDeliverable1
         [Fact]
         public void isSafeTest()
         {
-            int p1ID = DbMethods.getInstance().InsertPatient();
-            int p2ID = DbMethods.getInstance().InsertPatient();
-            int p3ID = DbMethods.getInstance().InsertPatient();
+
+            int p1ID = 0;
+            int p2ID = 1;
+            int p3ID = 2;
             Patient p = new Patient(p1ID);
             DateTime now = DateTime.Now;
+
+            DbMethods.getInstance().clearTables();
+
+            DbMethods.getInstance().InsertPatient();
+            DbMethods.getInstance().InsertPatient();
+            DbMethods.getInstance().InsertPatient();
 
             DbMethods.getInstance().InsertVisit(p1ID, 1, 1, now);
             DbMethods.getInstance().InsertVisit(p1ID, 1, 1, now);
@@ -133,7 +150,10 @@ namespace comp4004ProjDeliverable1
         [Fact]
         public void getCMMatchesTest()
         {
-            int p1ID = DbMethods.getInstance().InsertPatient();
+            DbMethods.getInstance().clearTables();
+            int p1ID = 0;    
+            DbMethods.getInstance().InsertPatient();
+            
             DateTime now = DateTime.Now;
 
             DbMethods.getInstance().InsertVisit(p1ID, 1, 1, now);

@@ -67,6 +67,8 @@ namespace comp4004ProjDeliverable1
 
         private void btnGenerateScanario1_Click(object sender, EventArgs e)
         {
+            this._db.clearTables();
+
             int safePatientsPercentage;
                 
             try
@@ -78,7 +80,7 @@ namespace comp4004ProjDeliverable1
                 safePatientsPercentage = 10;
             }
                 
-
+            
             _controller.createIteration3Patients(1000, (int)(1000*safePatientsPercentage/100.0f), 4, new List<GenerationRule>()
             {
                 new GenerationRule(100, 20),
@@ -92,6 +94,7 @@ namespace comp4004ProjDeliverable1
                 new GenerationRule(100, 60),
                 new GenerationRule(100, 65)
             });
+
 
             this.udpateDataBindings();
         }
@@ -317,7 +320,8 @@ namespace comp4004ProjDeliverable1
                 {
                     Dictionary<int, List<Visit>> data = DataLoader.GetVisitData(this.tbBrowse.Text);
                     DbMethods.getInstance().InsertVisits(data);
-                    this.udpateDataBindings();
+                    //this.udpateDataBindings();
+                    this.updatePatientVisits();
                 }
                 catch (System.Exception ex)
                 {
@@ -334,7 +338,36 @@ namespace comp4004ProjDeliverable1
 
         private void btnGenerateScenario2_Click(object sender, EventArgs e)
         {
+            this._db.clearTables();
 
+            int safePatientsPercentage;
+
+            try
+            {
+                safePatientsPercentage = int.Parse(this.tbPatientSafetyPercentage.Text);
+            }
+            catch (Exception ex)
+            {
+                safePatientsPercentage = 10;
+            }
+
+
+            _controller.createIteration3Patients(10000, (int)(10000 * safePatientsPercentage / 100.0f), 4, new List<GenerationRule>()
+            {
+                new GenerationRule(1000, 20),
+                new GenerationRule(1000, 30),
+                new GenerationRule(1000, 40),
+                new GenerationRule(1000, 50),
+                new GenerationRule(1000, 60),
+                new GenerationRule(1000, 70),
+                new GenerationRule(1000, 80),
+                new GenerationRule(1000, 90),
+                new GenerationRule(1000, 100),
+                new GenerationRule(1000, 110)
+            });
+
+
+            this.udpateDataBindings();
         }
     }
 }
